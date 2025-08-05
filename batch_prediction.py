@@ -1,8 +1,14 @@
 import os
 import csv
+from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
+from msrest.authentication import ApiKeyCredentials
 
 # Directory of images
 image_folder = "./test_images"
+
+# Authentication
+credentials = ApiKeyCredentials(in_headers={"Prediction-key": "YOUR_PREDICTION_KEY"})
+predictor = CustomVisionPredictionClient("YOUR_ENDPOINT", credentials)
 
 # Open CSV writer
 with open('classification_results.csv', 'w', newline='') as f:
